@@ -1,0 +1,24 @@
+name: host_exec
+version: 0.1
+description: "A hello world example"
+registry: getporter
+required:
+  - docker
+mixins:
+  - docker
+install:
+  - docker:
+      build:
+        tag: exec_host
+      run:
+        image: exec_host
+        privileged: true
+        flags:
+          net: host
+          pid: host
+          ipc: host
+upgrade:
+uninstall:
+  - docker:
+      remove:
+        container: host_exec
